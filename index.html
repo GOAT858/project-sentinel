@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3M PROJECT SENTINEL</title>
+  <meta name="description" content="3M Project Sentinel — Autonomous Stage-0 Oncology Engine" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+
+  <div class="app-shell">
+    <header class="masthead">
+      <p class="brand">3M™ PROJECT SENTINEL</p>
+      <h1>Autonomous Stage-0 Oncology Engine</h1>
+      <p class="runtime" id="runtime-status">Runtime: Initializing Sentinel core...</p>
+    </header>
+
+    <nav class="tab-bar" role="tablist" aria-label="Sentinel tabs">
+      <button class="tab active" data-tab="optical" role="tab" aria-selected="true">// 01. OPTICAL SCAN</button>
+      <button class="tab" data-tab="rna" role="tab" aria-selected="false">// 02. RNA PROFILING</button>
+      <button class="tab" data-tab="vae" role="tab" aria-selected="false">// 03. VAE ARCHITECTURE</button>
+      <button class="tab" data-tab="clinical" role="tab" aria-selected="false">// 04. CLINICAL PROTOCOL</button>
+      <button class="tab" data-tab="inventor" role="tab" aria-selected="false">// 05. THE INVENTOR</button>
+    </nav>
+
+    <main class="panel-wrap">
+      <section id="optical" class="tab-panel active" role="tabpanel">
+        <h2>INITIATE SENSOR</h2>
+        <p class="lead">Align Sentinel-U Cassette. AI will extract spectrophotometric data.</p>
+
+        <div class="camera-stage">
+          <video id="camera-preview" autoplay muted playsinline></video>
+
+          <div class="scan-overlay" id="scan-overlay">
+            <div class="scan-frame"></div>
+            <div class="scan-line"></div>
+          </div>
+
+          <div id="camera-placeholder" class="camera-placeholder hidden">
+            <h3>This app would like to use your camera.</h3>
+            <p>Learn how to allow access.</p>
+          </div>
+        </div>
+
+        <canvas id="analysis-canvas" class="hidden"></canvas>
+
+        <div class="control-row">
+          <button id="start-camera-btn" class="btn primary">Start Camera</button>
+          <button id="switch-camera-btn" class="btn ghost hidden">Switch Camera</button>
+          <button id="capture-btn" class="btn primary">Capture</button>
+
+          <label class="btn ghost file-btn">
+            Upload Image
+            <input id="upload-input" type="file" accept="image/*" />
+          </label>
+
+          <button id="retake-btn" class="btn ghost hidden">Retake</button>
+          <button id="analyze-btn" class="btn primary hidden">Analyze</button>
+        </div>
+
+        <p class="camera-note" id="camera-note">System ready. Awaiting optical permission.</p>
+
+        <div id="preview-wrap" class="preview-wrap hidden">
+          <div class="preview-head">
+            <h3>Locked Optical Frame</h3>
+            <span id="resolution">--</span>
+          </div>
+          <img id="captured-preview" alt="Captured cassette scan" />
+        </div>
+
+        <div class="status-grid">
+          <article class="status-card">
+            <h3>SYSTEM STANDBY</h3>
+            <p id="system-standby">Awaiting optical input to generate latent coordinates.</p>
+          </article>
+
+          <article class="status-card">
+            <h3>// BIOMARKER SATURATION</h3>
+            <p id="biomarker-saturation">Awaiting Scan...</p>
+          </article>
+        </div>
+
+        <div class="metric-grid">
+          <article class="metric-card">
+            <span>OD</span>
+            <strong id="metric-od">--</strong>
+          </article>
+          <article class="metric-card">
+            <span>Sentinel Score</span>
+            <strong id="metric-score">--</strong>
+          </article>
+          <article class="metric-card">
+            <span>Probability</span>
+            <strong id="metric-prob">--</strong>
+          </article>
+          <article class="metric-card">
+            <span>Inference Mode</span>
+            <strong id="metric-source">--</strong>
+          </article>
+        </div>
+      </section>
+
+      <section id="rna" class="tab-panel" role="tabpanel">
+        <h2>// 02. RNA PROFILING</h2>
+        <p class="lead">Optical intensity is transformed into transcriptomic proxy states for stage-0 pattern inference.</p>
+
+        <div class="status-grid">
+          <article class="status-card">
+            <h3>Latent Coordinates</h3>
+            <p id="latent-coordinates">Awaiting optical input to generate latent coordinates.</p>
+          </article>
+
+          <article class="status-card">
+            <h3>5-Gene Signature Index</h3>
+            <p id="signature-index">Awaiting Scan...</p>
+          </article>
+
+          <article class="status-card">
+            <h3>Model Validation</h3>
+            <p id="model-validation">Loading model telemetry...</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="vae" class="tab-panel" role="tabpanel">
+        <h2>// ALGORITHMIC ENGINE</h2>
+
+        <div class="formula-box">
+          <p class="formula">
+            log p(x) ≥ E<sub>q<sub>ϕ</sub>(z∣x)</sub>[log p<sub>θ</sub>(x∣z)] − D<sub>KL</sub>(q<sub>ϕ</sub>(z∣x)∣∣p(z))
+          </p>
+        </div>
+
+        <p class="lead">
+          System utilizes Deep Generative Modeling (scVI) for dimensionality reduction and latent space projection.
+          Optical intensity processed via Beer-Lambert translation.
+        </p>
+
+        <div class="status-card single">
+          <h3>Inference Runtime</h3>
+          <p id="vae-runtime">Awaiting model telemetry...</p>
+        </div>
+      </section>
+
+      <section id="clinical" class="tab-panel" role="tabpanel">
+        <h2>// CLINICAL DIRECTIVE</h2>
+        <div class="directive-card low" id="directive-card">
+          <p id="clinical-directive">Routine monitoring recommended.</p>
+        </div>
+        <p class="lead" id="clinical-support">Capture an optical scan to refresh protocol output.</p>
+      </section>
+
+      <section id="inventor" class="tab-panel" role="tabpanel">
+        <h2>// SYSTEM ARCHITECT</h2>
+        <h3 class="inventor-name">Sameer Mana</h3>
+        <p class="lead">Lead Researcher | 2026 3M™ Young Scientist Challenge</p>
+
+        <div class="status-grid">
+          <article class="status-card">
+            <h3>LOCATION</h3>
+            <p>California</p>
+          </article>
+
+          <article class="status-card">
+            <h3>MISSION OBJECTIVE</h3>
+            <p>
+              To democratize stage-0 cancer detection by engineering a bridge between
+              high-dimensional artificial intelligence and physical materials science.
+            </p>
+          </article>
+
+          <article class="status-card">
+            <h3>PROJECT ORIGIN</h3>
+            <p>
+              Pancreatic cancer currently possesses a 90% mortality rate strictly due to late-stage
+              diagnostic limitations. Traditional imaging fails to capture the cellular genesis of the disease.
+            </p>
+            <p>
+              Project Sentinel was developed to solve this diagnostic gap. By utilizing a Variational Autoencoder
+              (scVI) to map the transcriptomic shift of 30,000+ ductal cells, a novel 5-gene pre-malignant signature
+              was isolated. Translating this digital discovery into a physical, non-invasive diagnostic cassette using
+              3M™ membrane technology transforms a fatal diagnosis into an actionable, preventable condition.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
